@@ -45,21 +45,21 @@ public class ProductRestController {
     @RequestMapping(value = "product", params = {"type"})
     public ResponseEntity<List<Product>> getbytype(@RequestParam("type") String type){
     		logger.info("getbytype requested for " +  type);
-        return new ResponseEntity<List<Product>>(productrepo.findByTypesRef(type), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productrepo.findByType(type), HttpStatus.OK);
     }   
     
     @CrossOrigin
     @RequestMapping(value = "product", params = {"category"})
     public ResponseEntity<List<Product>> getbycategory(@RequestParam("category") String category){
     		logger.info("getbycategory requested for " +  category);
-        return new ResponseEntity<List<Product>>(productrepo.findByCategoriesRef(category), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productrepo.findByCategory(category), HttpStatus.OK);
     }   
     
     @CrossOrigin
     @RequestMapping(value = "product", params = {"region"})
     public ResponseEntity<List<Product>> getbyregion(@RequestParam("region") String region){
     		logger.info("getbyregion requested for " +  region);
-        return new ResponseEntity<List<Product>>(productrepo.findByRegionsRef(region), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productrepo.findByRegion(region), HttpStatus.OK);
     }   
     
     @CrossOrigin

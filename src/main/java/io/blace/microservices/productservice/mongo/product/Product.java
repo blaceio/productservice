@@ -1,7 +1,5 @@
 package io.blace.microservices.productservice.mongo.product;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 
 public class Product {
@@ -10,10 +8,9 @@ public class Product {
 	private String id;
 	
 	private String description;
-	
-	private List<Reference> types;
-	private List<Reference> categories;
-	private List<Reference> regions;
+	private String type;
+	private String category;
+	private String region;
 	
 	public String getId() {
 		return id;
@@ -27,28 +24,28 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<Reference> getTypes() {
-		return types;
+	public String getType() {
+		return type;
 	}
-	public void setTypes(List<Reference> types) {
-		this.types = types;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public List<Reference> getCategories() {
-		return categories;
+	public String getCategory() {
+		return category;
 	}
-	public void setCategories(List<Reference> categories) {
-		this.categories = categories;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public List<Reference> getRegions() {
-		return regions;
+	public String getRegion() {
+		return region;
 	}
-	public void setRegions(List<Reference> regions) {
-		this.regions = regions;
+	public void setRegion(String region) {
+		this.region = region;
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", description=" + description + ", types=" + types + ", categories=" + categories
-				+ ", regions=" + regions + "]";
+		return "Product [id=" + id + ", description=" + description + ", type=" + type + ", category=" + category
+				+ ", region=" + region + "]";
 	}
-
+	
 }

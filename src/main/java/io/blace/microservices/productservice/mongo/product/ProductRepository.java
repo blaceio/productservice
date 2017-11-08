@@ -10,10 +10,10 @@ public interface ProductRepository extends MongoRepository<Product, String> {
 	
 	List<Product> findAll();
 	
-	List<Product> findByTypesRef(String type);
+	List<Product> findByType(String type);
 	
-	List<Product> findByCategoriesRef(String category);
+	List<Product> findByCategory(String category);
 	
-	List<Product> findByRegionsRef(String category);
+	List<Product> findByRegion(String category);
 	
 }
