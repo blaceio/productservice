@@ -5,7 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,44 +28,34 @@ public class ProductRestController {
 	
     @CrossOrigin
     @RequestMapping(value = "product")
-    public ResponseEntity<List<Product>> getallproducts() {
-    		logger.info("getallproducts requested");
-        return new ResponseEntity<List<Product>>(productrepo.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> getbyoptional(
+    		@RequestParam(value = "id", defaultValue = "") String id,
+    		@RequestParam(value = "type", defaultValue = "") String type, 
+    		@RequestParam(value = "category", defaultValue = "") String category, 
+    		@RequestParam(value = "division", defaultValue = "") String division, 
+    		@RequestParam(value = "region", defaultValue = "") String region
+    		){
+    		logger.info("getbyoptional optional requested for " +  id + " " + type + " " + category + " " + division + " " + region);
+    		return new ResponseEntity<List<Product>>(productrepo.findProduct(id, type, category, division, region), HttpStatus.OK);
     }
-    
-    @CrossOrigin
-    @RequestMapping(value = "product", params = {"id"})
-    public ResponseEntity<Product> getbyid(@RequestParam("id") String id){
-    		logger.info("getbyid requested for " +  id);
-        return new ResponseEntity<Product>(productrepo.findById(id), HttpStatus.OK);
-    }   
-    
-    @CrossOrigin
-    @RequestMapping(value = "product", params = {"type"})
-    public ResponseEntity<List<Product>> getbytype(@RequestParam("type") String type){
-    		logger.info("getbytype requested for " +  type);
-        return new ResponseEntity<List<Product>>(productrepo.findByType(type), HttpStatus.OK);
-    }   
-    
-    @CrossOrigin
-    @RequestMapping(value = "product", params = {"category"})
-    public ResponseEntity<List<Product>> getbycategory(@RequestParam("category") String category){
-    		logger.info("getbycategory requested for " +  category);
-        return new ResponseEntity<List<Product>>(productrepo.findByCategory(category), HttpStatus.OK);
-    }   
-    
-    @CrossOrigin
-    @RequestMapping(value = "product", params = {"region"})
-    public ResponseEntity<List<Product>> getbyregion(@RequestParam("region") String region){
-    		logger.info("getbyregion requested for " +  region);
-        return new ResponseEntity<List<Product>>(productrepo.findByRegion(region), HttpStatus.OK);
-    }   
     
     @CrossOrigin
     @PostMapping("/product")
     public ResponseEntity<Product> createproduct(@RequestBody Product product) {
     		logger.info("createproduct requested for " +  product.toString());
     		productrepo.save(product);
+        return new ResponseEntity<Product>(HttpStatus.CREATED);
+    }
+    
+    @CrossOrigin
+    @PostMapping("/products")
+    public ResponseEntity<Product> createproducts(@RequestBody List<Product> products) {
+    		logger.info("createproducts requested");
+    		
+    		for( Product region : products) {
+    			productrepo.save(region);
+    		}
+    		
         return new ResponseEntity<Product>(HttpStatus.CREATED);
     }
     

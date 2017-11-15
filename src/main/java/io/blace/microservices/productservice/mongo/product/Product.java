@@ -10,6 +10,7 @@ public class Product {
 	private String description;
 	private String type;
 	private String category;
+	private String division;
 	private String region;
 	
 	public String getId() {
@@ -36,6 +37,12 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
 	public String getRegion() {
 		return region;
 	}
@@ -45,7 +52,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", description=" + description + ", type=" + type + ", category=" + category
-				+ ", region=" + region + "]";
+				+ ", division=" + division + ", region=" + region + "]";
 	}
 	
 }
